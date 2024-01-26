@@ -17,8 +17,9 @@ let plantsSection = document.getElementById("plantsList"); //Creamos una variabl
 async function printPlants() {
     const products = await getProducts();
     
-    products.map(product => {plantsSection.innerHTML +=
-        `<h3></h3>`
-    })
-
+    //products.map(product => {plantsSection.innerHTML += })
 }
+
+//Crear una funcion para añadir objetos
+
+//Crear una funcion para eliminar objetos

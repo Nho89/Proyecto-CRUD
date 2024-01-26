@@ -4,6 +4,7 @@ body {
     height: 100vh;
     display: grid;
     place-items: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .plantsList {
@@ -20,4 +21,12 @@ body {
 
 .campo {
     height: 2.5vw;
+}
+
+.table {
+    background-color: antiquewhite;
+}
+
+th, td {
+    padding: 2vw;
 }
