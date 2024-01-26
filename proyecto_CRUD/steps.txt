@@ -1,0 +1,3 @@
+Crear un proyecto que pueda hacer peticiones mediante un formulario.
+- Crear nuestro archivo Json y que se pueda añadir elementos con un botón.
+- La base de datos tiene que ser del tema que elegimos.
