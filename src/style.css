@@ -1,0 +1,23 @@
+body {
+    background-color: rgb(165, 218, 198);
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.plantsList {
+    padding: 30px;
+    background-color: rgb(108, 143, 129);
+    color: antiquewhite;
+    box-shadow: 0px 0px 20px rgb(44, 80, 65);
+    border-radius: 10px;
+    font-size: 4vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.campo {
+    height: 2.5vw;
+}
