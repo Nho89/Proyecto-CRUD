@@ -11,6 +11,12 @@
       "name": "Bambo",
       "biome": "Jungla",
       "duration": 15
+    },
+    {
+      "id": "b73e",
+      "name": "rosa",
+      "biome": "jungle",
+      "duration": "7"
     }
   ]
 }

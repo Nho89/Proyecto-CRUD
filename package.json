@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dates": "npx json-server server/db.json"
+    "api": "npx json-server server/db.json"
   },
   "keywords": [],
   "author": "",

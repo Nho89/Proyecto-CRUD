@@ -9,28 +9,20 @@
 <body>
     <section class="plantsList">
         <h3><u>Plants list</u></h3>
-    <form>
-        <input class="campo" type="text" name="name" id="name" placeholder="Name"><br>
+        <form id="plantForm">
+            <input type="text" id="plantName" placeholder="Plant name" required>
+            <input type="text" id="plantBiome" placeholder="Plant biome" required>
+            <input type="number" id="plantDuration" placeholder="Plant duration" required>
+            <button type="submit">Add plant</button>
+          </form>
 
-        <input class="campo" type="text" name="biome" id="biome" placeholder="Biome"><br>
-
-        <input class="campo" type="text" name="duration" id="duration" placeholder="Life range"><br><br>
-    </form>
-
-        <button type="button" onclick="getProducts()">Add plant</button>
+        
     </section>
     <table class="table">
         <tr>
             <th>Name</th>
             <th>Biome</th>
             <th>Life range</th>
-            <th>ID</th>
-        </tr>
-        <tr>
-            <td>Planta</td>
-            <td>Pradera</td>
-            <td>7 años</td>
-            <td>26c</td>
         </tr>
     </table>
     <script src="./src/main.js"></script>
