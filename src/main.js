@@ -21,7 +21,11 @@ async function getProducts() {
         <td>${product.name}</td>
         <td>${product.biome}</td>
         <td>${product.duration}</td>
-      `;
+        <td>
+        <button onclick="eliminarUsuario('${product.id}')">Eliminar</button>
+        </td>
+        `;
+      
       plantsSection.appendChild(productElement);
     });
   }
@@ -39,6 +43,8 @@ async function getProducts() {
       duration: plantDuration,
     };
   
+// Método POST 
+
     const result = await fetch(`http://localhost:3000/products`, {
       method: "POST",
       body: JSON.stringify(newProduct),
@@ -59,6 +65,8 @@ async function getProducts() {
       alert("Error adding plant");
     }
   });
+
+  // el siguiente código es para agregar una nueva fila a la tabla HTML con la información ingresada en el formulario
   document.getElementById('plantForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -82,13 +90,13 @@ async function getProducts() {
   // Crear una función para eliminar objetos
 
 async function deletePlant(plantId) {
-    const result = await fetch(`http://localhost:3000/products/${plantId}`, {
+    const result = await fetch(`http://localhost:3000/products/${product.id}`, {
         method: "DELETE",
     });
 
     if (result.ok) {
         alert("Plant deleted successfully");
-        const plantElement = document.getElementById(`plant_${plantId}`);
+        const plantElement = document.getElementById(`plant_${product.id}`);
         plantElement.remove();
     } else {
         alert("Error deleting plant");
