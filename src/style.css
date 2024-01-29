@@ -21,12 +21,26 @@ body {
 
 .campo {
     height: 2.5vw;
+    border: none;
+    background-color: rgba(255, 255, 255, 50%);
+    color: rgb(108, 143, 129);
+    padding: 0 0 0 10px;
 }
 
-.table {
+.button {
     background-color: antiquewhite;
+    font-size: 2vw;
+    border: none;
+    color: rgb(108, 143, 129);
+    border-radius: 2px;
+}
+
+.button:hover {
+    cursor: pointer;
 }
 
 th, td {
     padding: 2vw;
+    border: 1px solid rgb(178, 165, 147);
+    background-color: antiquewhite;
 }
