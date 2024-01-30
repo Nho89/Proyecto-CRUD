@@ -4,13 +4,13 @@
       "id": "929d",
       "name": "Bambu",
       "biome": "jungle",
-      "duration": "10"
+      "duration": "10 años"
     },
     {
       "id": "d919",
-      "name": "Rosa",
-      "biome": "nose",
-      "duration": "1"
+      "name": "Cacao",
+      "biome": "Selva tropical",
+      "duration": "30 años"
     }
   ]
 }

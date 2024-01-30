@@ -1,29 +1,5 @@
 const formulary = document.getElementById("plantForm");
 
-function validar() {
-  const nombreInput = document.getElementById('plantName');
-  const biomeInput = document.getElementById('plantBiome');
-  const durationInput = document.getElementById('plantDuration');
-  const soloNumeros = /^[0-9]+$/;
-
-  if (nombreInput.value === "") {
-    alert("Nombre no puede estar vacio");
-    return false;
-  }
-  else if (biomeInput.value === "") {
-    alert("Biome no puede estar vacio");
-    return false;
-  }
-  else if (durationInput.value === "") {
-    alert("Duration no puede estar vacio");
-    return false;
-  }
-  else {
-    return true;
-  }
-}
-
-
 // Función asincrona para obtener los datos de las plantas.
 
 async function getPlants() {
@@ -33,31 +9,31 @@ async function getPlants() {
 }
 
 // Función para manejar el envío del formulario
-function enviarForm(event) {
+function enviarForm() {
 
-  const name = document.getElementById("plantName").value;
-  
-  const biome = document.getElementById("plantBiome").value;
-  const duration = document.getElementById("plantDuration").value;
+  const nameInput = document.getElementById("plantName");
+  const biomeInput = document.getElementById("plantBiome");
+  const durationInput = document.getElementById("plantDuration");
+
+  const name = nameInput.value;
+  const biome = biomeInput.value;
+  const duration = durationInput.value;
 
   const plant = { name, biome, duration };
 
-  // Envía una solicitud HTTP POST, para crear una nueva planta
   fetch("http://localhost:3000/products", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(plant),
-  })
-    .then((result) => result.json())//maneja la respuesta del servidor después de realizar una solicitud POST al servidor.
-    .then((createdPlant) => {
-      plants.push(createdPlant);//utilizando el método push añade los datos de la nueva planta al array pants.
-      
-      // Vuelve a mostrar los datos de las plantas en la tabla
-      printPlants();
-    });
+  });
+
+  plants.push(plant);
+  printPlants();
+
 }
+
 
 // Función para mostrar los datos de las plantas en la tabla, se van añadiendo debajo de las cabeceras como hijos.
 function printPlants() {
@@ -128,7 +104,28 @@ async function deletePlant(id) {
   printPlants();
 }
 
+function validar() {
+  const nombreInput = document.getElementById('plantName');
+  const biomeInput = document.getElementById('plantBiome');
+  const durationInput = document.getElementById('plantDuration');
+  const soloNumeros = /^[0-9]+$/;
 
+  if (nombreInput.value === "") {
+    alert("Nombre no puede estar vacio");
+    return false;
+  }
+  else if (biomeInput.value === "") {
+    alert("Biome no puede estar vacio");
+    return false;
+  }
+  else if (durationInput.value === "") {
+    alert("Duration no puede estar vacio");
+    return false;
+  }
+  else {
+    return true;
+  }
+}
 
 // cuando el usuario envía el formulario, se ejecutará la función enviarForm
 const form = document.getElementById("plantForm");
