@@ -11,6 +11,12 @@
       "name": "Bambu",
       "biome": "jungle",
       "duration": "5"
+    },
+    {
+      "id": "288e",
+      "name": "Rosa",
+      "biome": "Bosque",
+      "duration": "8"
     }
   ]
 }
