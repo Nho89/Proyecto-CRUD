@@ -1,3 +1,29 @@
+const formulary = document.getElementById("plantForm");
+
+function validar() {
+  const nombreInput = document.getElementById('plantName');
+  const biomeInput = document.getElementById('plantBiome');
+  const durationInput = document.getElementById('plantDuration');
+  const soloNumeros = /^[0-9]+$/;
+
+  if (nombreInput.value === "") {
+    alert("Nombre no puede estar vacio");
+    return false;
+  }
+  else if (biomeInput.value === "") {
+    alert("Biome no puede estar vacio");
+    return false;
+  }
+  else if (durationInput.value === "") {
+    alert("Duration no puede estar vacio");
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+
 // Función asincrona para obtener los datos de las plantas.
 
 async function getPlants() {
@@ -70,12 +96,29 @@ function printPlants() {
       tableBody.appendChild(row);
     });
   });
-  printPlants();
 }
 
 // Función para editar una planta
-function editPlant(plant) {
+async function editPlant(plant) {
+  const newName = document.getElementById("plantName").value;
+  const newBiome = document.getElementById("plantBiome").value;
+  const newDuration = document.getElementById("plantDuration").value;
 
+  plant.name = newName;
+  plant.biome = newBiome;
+  plant.duration = newDuration;
+
+  await fetch(`http://localhost:3000/products/${plant.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(plant),
+  })
+
+  const plants = await getPlants();
+
+  printPlants(plants);
 }
 
 // Función para eliminar una planta, envía una petición Delete del CRUD al servidor con el id  de la planta a borrar.
