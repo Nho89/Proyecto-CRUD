@@ -1,3 +1,29 @@
+const formulary = document.getElementById("plantForm");
+
+function validar() {
+  const nombreInput = document.getElementById('plantName');
+  const biomeInput = document.getElementById('plantBiome');
+  const durationInput = document.getElementById('plantDuration');
+  const soloNumeros = /^[0-9]+$/;
+
+  if (nombreInput.value === "") {
+    alert("Nombre no puede estar vacio");
+    return false;
+  }
+  else if (biomeInput.value === "") {
+    alert("Biome no puede estar vacio");
+    return false;
+  }
+  else if (durationInput.value === "") {
+    alert("Duration no puede estar vacio");
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+
 // Función asincrona para obtener los datos de las plantas.
 
 async function getPlants() {
