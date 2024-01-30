@@ -1,22 +1,16 @@
 {
   "products": [
     {
-      "name": "Cactus",
-      "biome": "Desierto",
-      "duration": 7,
+      "name": "cactus",
+      "biome": "desierto",
+      "duration": "5",
       "id": "a14d"
     },
     {
-      "id": "f1e6",
+      "id": "929d",
       "name": "Bambu",
       "biome": "jungle",
-      "duration": "5"
-    },
-    {
-      "id": "288e",
-      "name": "Rosa",
-      "biome": "Bosque",
-      "duration": "8"
+      "duration": "10"
     }
   ]
 }

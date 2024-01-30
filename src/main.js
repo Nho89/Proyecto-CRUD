@@ -69,21 +69,13 @@ function printPlants() {
       tableBody.appendChild(row);
     });
   });
-  printPlants();
 }
 
 // Función para editar una planta
 async function editPlant(plant) {
-let plantId = plant.id;
 
-  await fetch(`http://localhost:3000/products/${id}`, {
-  method: "PUT",
-  headers: {"Content-Type": "application/json"},
-  body: JSON.stringify(plant),
-  })
-
-  .then((result) => result.json())//Que tome los resultados en json y los actualice
 }
+
 
 // Función para eliminar una planta, envía una petición Delete del CRUD al servidor con el id  de la planta a borrar.
 async function deletePlant(id) {
@@ -93,6 +85,7 @@ async function deletePlant(id) {
 
   // Después de eliminar la planta, actualiza la lista.
   printPlants();
+  alert("La planta ha sido eliminada correctamente");
 }
 
 
