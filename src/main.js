@@ -10,6 +10,7 @@ async function getPlants() {
 function enviarForm(event) {
 
   const name = document.getElementById("plantName").value;
+  
   const biome = document.getElementById("plantBiome").value;
   const duration = document.getElementById("plantDuration").value;
 
