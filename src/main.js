@@ -122,6 +122,7 @@ async function editPlant(plant) {
 
 // Función para eliminar una planta, envía una petición Delete del CRUD al servidor con el id  de la planta a borrar.
 async function deletePlant(id) {
+  if(confirm("¿Estás seguro que quieres eliminar este producto?") === true)
   await fetch(`http://localhost:3000/products/${id}`, {
     method: "DELETE",
   });

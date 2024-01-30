@@ -8,15 +8,9 @@
     },
     {
       "id": "929d",
-      "name": "Bambu",
-      "biome": "jungle",
-      "duration": "10"
-    },
-    {
-      "id": "f81b",
-      "name": "Rosa",
-      "biome": "Bosque",
-      "duration": "8"
+      "name": "",
+      "biome": "",
+      "duration": ""
     }
   ]
 }
