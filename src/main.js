@@ -100,29 +100,26 @@ function printPlants() {
 
 // Función para editar una planta
 async function editPlant(plant) {
-  const newName = document.getElementById("plantName").value;
-  const newBiome = document.getElementById("plantBiome").value;
-  const newDuration = document.getElementById("plantDuration").value;
+  const newName = prompt("Ingrese el nuevo nombre:", plant.name);
+  const newBiome = prompt("Ingrese el nuevo bioma:", plant.biome);
+  const newDuration = prompt("Ingrese la nueva duración:", plant.duration);
 
-  plant.name = newName;
+  plant.name = newName; 
   plant.biome = newBiome;
   plant.duration = newDuration;
 
   await fetch(`http://localhost:3000/products/${plant.id}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(plant),
-  })
-
+  });
   const plants = await getPlants();
-
   printPlants(plants);
 }
 
 // Función para eliminar una planta, envía una petición Delete del CRUD al servidor con el id  de la planta a borrar.
 async function deletePlant(id) {
+  if(confirm("¿Estás seguro que quieres eliminar este producto?") === true)
   await fetch(`http://localhost:3000/products/${id}`, {
     method: "DELETE",
   });
