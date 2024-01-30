@@ -73,9 +73,26 @@ function printPlants() {
 
 // Función para editar una planta
 async function editPlant(plant) {
+  const newName = document.getElementById("plantName").value;
+  const newBiome = document.getElementById("plantBiome").value;
+  const newDuration = document.getElementById("plantDuration").value;
 
+  plant.name = newName;
+  plant.biome = newBiome;
+  plant.duration = newDuration;
+
+  await fetch(`http://localhost:3000/products/${plant.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(plant),
+  })
+
+  const plants = await getPlants();
+
+  printPlants(plants);
 }
-
 
 // Función para eliminar una planta, envía una petición Delete del CRUD al servidor con el id  de la planta a borrar.
 async function deletePlant(id) {
@@ -85,7 +102,6 @@ async function deletePlant(id) {
 
   // Después de eliminar la planta, actualiza la lista.
   printPlants();
-  alert("La planta ha sido eliminada correctamente");
 }
 
 
