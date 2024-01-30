@@ -17,6 +17,18 @@
       "name": "rosa",
       "biome": "jungle",
       "duration": "7"
+    },
+    {
+      "id": "c7b7",
+      "name": "Cactus",
+      "biome": "Jungla",
+      "duration": "2"
+    },
+    {
+      "id": "9c54",
+      "name": "Cactus",
+      "biome": "Jungla",
+      "duration": "2"
     }
   ]
 }
