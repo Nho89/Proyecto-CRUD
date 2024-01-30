@@ -1,105 +1,96 @@
-// Primero vamos a pedirle que me traiga los datos (Creamos una funcion asincrona para llamar a los datos)
+// Función asincrona para obtener los datos de las plantas.
 
-// await sirve para pedirle al código que espere un momento (sirve para que espere a que le lleguen los datos)
+async function getPlants() {
+  const result = await fetch("http://localhost:3000/products");
+  const plants = await result.json();
+  return plants;
+}
 
-async function getProducts() {
-    const result = await fetch("http://localhost:3000/products"); // accede a la base de datos
-    const data = await result.json(); // convierte los datos en json
-    return data;
-  }
-  
-  // Ahora creamos otra función que nos lo imprima en pantalla.
-  let plantsSection = document.getElementById("plantsList"); // Creamos una variable que accede al elemento section del HTML
-  
-  // Ahora queremos que recorra el array de objetos (plantas)
-  async function printPlants() {
-    const products = await getProducts();
-  
-    products.map((product) => {
-      const productElement = document.createElement("tr");
-      productElement.innerHTML = `
-        <td>${product.name}</td>
-        <td>${product.biome}</td>
-        <td>${product.duration}</td>
-        <td>
-        <button onclick="eliminarUsuario('${product.id}')">Eliminar</button>
-        </td>
-        `;
+// Función para manejar el envío del formulario
+function enviarForm(event) {
+
+  const name = document.getElementById("plantName").value;
+  const biome = document.getElementById("plantBiome").value;
+  const duration = document.getElementById("plantDuration").value;
+
+  const plant = { name, biome, duration };
+
+  // Envía una solicitud HTTP POST, para crear una nueva planta
+  fetch("http://localhost:3000/products", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(plant),
+  })
+    .then((result) => result.json())//maneja la respuesta del servidor después de realizar una solicitud POST al servidor.
+    .then((createdPlant) => {
+      plants.push(createdPlant);//utilizando el método push añade los datos de la nueva planta al array pants.
       
-      plantsSection.appendChild(productElement);
+      // Vuelve a mostrar los datos de las plantas en la tabla
+      printPlants();
     });
-  }
-  
-  const plantForm = document.getElementById("plantForm");
-  plantForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const plantName = document.getElementById("plantName").value;
-    const plantBiome = document.getElementById("plantBiome").value;
-    const plantDuration = document.getElementById("plantDuration").value;
-  
-    const newProduct = {
-      name: plantName,
-      biome: plantBiome,
-      duration: plantDuration,
-    };
-  
-// Método POST 
+}
 
-    const result = await fetch(`http://localhost:3000/products`, {
-      method: "POST",
-      body: JSON.stringify(newProduct),
-      headers: {
-        "Content-Type": "application/json",
-      },
+// Función para mostrar los datos de las plantas en la tabla, se van añadiendo debajo de las cabeceras como hijos.
+function printPlants() {
+  getPlants().then((plants) => {
+    const tableBody = document.querySelector(".table tbody");
+    tableBody.innerHTML = "";
+
+    plants.map((plant) => {
+      const row = document.createElement("tr");
+
+      const namePlant = document.createElement("td");
+      namePlant.textContent = plant.name;
+      row.appendChild(namePlant);
+
+      const biomePlant = document.createElement("td");
+      biomePlant.textContent = plant.biome;
+      row.appendChild(biomePlant);
+
+      const durationPlant = document.createElement("td");
+      durationPlant.textContent = plant.duration;
+      row.appendChild(durationPlant);
+
+      const actionPlant = document.createElement("td");
+
+      const editButton = document.createElement("button");
+      editButton.textContent = "Edit";
+      editButton.addEventListener("click", () => editPlant(plant));
+      actionPlant.appendChild(editButton);
+
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.addEventListener("click", () => deletePlant(plant.id));
+      actionPlant.appendChild(deleteButton);
+
+      row.appendChild(actionPlant);
+      tableBody.appendChild(row);
     });
-  
-    if (result.ok) {
-      const newProductResponse = await result.json();
-      const newProductElement = document.createElement("tr");
-      newProductElement.innerHTML = `
-        <td>${newProductResponse.name}</td>
-        <td>${newProductResponse.biome}</td>
-        <td>${newProductResponse.duration}</td>
-      `;
-    } else {
-      alert("Error adding plant");
-    }
+  });
+  printPlants();
+}
+
+// Función para editar una planta
+function editPlant(plant) {
+
+}
+
+// Función para eliminar una planta, envía una petición Delete del CRUD al servidor con el id  de la planta a borrar.
+async function deletePlant(id) {
+  await fetch(`http://localhost:3000/products/${id}`, {
+    method: "DELETE",
   });
 
-  // el siguiente código es para agregar una nueva fila a la tabla HTML con la información ingresada en el formulario
-  document.getElementById('plantForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const plantName = document.getElementById('plantName').value;
-    const plantBiome = document.getElementById('plantBiome').value;
-    const plantDuration = document.getElementById('plantDuration').value;
-
-    const table = document.querySelector('table.table');
-    const newRow = table.insertRow();
-
-    const nameCell = newRow.insertCell();
-    const biomeCell = newRow.insertCell();
-    const durationCell = newRow.insertCell();
-    const idCell = newRow.insertCell();
-
-    nameCell.textContent = plantName;
-    biomeCell.textContent = plantBiome;
-    durationCell.textContent = plantDuration + ' años';
-    idCell.textContent = generateId(); // Genera un ID único para cada planta
-});
-  // Crear una función para eliminar objetos
-
-async function deletePlant(plantId) {
-    const result = await fetch(`http://localhost:3000/products/${product.id}`, {
-        method: "DELETE",
-    });
-
-    if (result.ok) {
-        alert("Plant deleted successfully");
-        const plantElement = document.getElementById(`plant_${product.id}`);
-        plantElement.remove();
-    } else {
-        alert("Error deleting plant");
-    }
-    console.log(plantId)
+  // Después de eliminar la planta, actualiza la lista.
+  printPlants();
 }
+
+
+
+// cuando el usuario envía el formulario, se ejecutará la función enviarForm
+const form = document.getElementById("plantForm");
+form.addEventListener("submit", enviarForm);
+
+printPlants();
