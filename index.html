@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The garden</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+    <section class="plantsList" id="plantsList">
+        <h3><u>The Garden</u></h3>
+        <form id="plantForm">
+            <input type="text" id="plantName" placeholder="Plant name" value="" required>
+
+            <input type="text" id="plantBiome" placeholder="Plant biome" required>
+
+            <input type="number" id="plantDuration" placeholder="Plant duration" required>
+
+            <button type="submit" onclick="return validar()">Add plant</button>
+          </form>
+
+        
+    </section>
+    <table class="table">
+        <thead>
+            <tr>
+              <th>Name</th>
+              <th>Biome</th>
+              <th>Life range</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+    </table>
+    <script src="./src/main.js"></script>
+</body>
+</html>

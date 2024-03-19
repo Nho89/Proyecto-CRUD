@@ -1,0 +1,16 @@
+{
+  "products": [
+    {
+      "id": "929d",
+      "name": "Bambu",
+      "biome": "jungle",
+      "duration": "10 años"
+    },
+    {
+      "id": "d919",
+      "name": "Cacao",
+      "biome": "Selva tropical",
+      "duration": "30 años"
+    }
+  ]
+}
