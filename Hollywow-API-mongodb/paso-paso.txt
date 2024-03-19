@@ -1,0 +1,45 @@
+- Lo primero iniciamos json, con npm init -y
+
+- Hemos creado nuestra carpeta y vamos a crear nuestra estructura de carpetas.
+
+- En nuestra carpeta database creamos un archivo conection_db.json
+
+- Creamos la carpeta models, donde pondremos nuestros modelos, en este caso sólo vamos a tener 1, sería PosterModel.js(la primera mayus y el singular)
+
+-otra carpeta de controladores con PosterController.js 
+
+- Crear una carpeta routes, con un archivo PosterRouter.js
+
+- Creamos  el archivo app.js y la carpeta de test
+
+- Creamos el .env y lo metemos en el .gitignore
+
+- Luego instalamos:  npm i express  , también el (nos va a permitir las consultas) npm i sequelize, también mysql 2 : npm i mysql2
+
+- Cambiamos el package.json "type": "module", y nuestro archivo principal : 
+ "main": "app.js",
+  "type": "module",
+
+
+- Vamos a crear la base de datos , en conection_db.js añadimos lo que nos dice en la web de sequelize: 
+
+/* const { Sequelize } = require('sequelize');
+ */
+import {Sequelize} from "sequelize";
+
+const sequelize = new Sequelize('database', 'username', 'password', {
+  host: 'localhost',
+  dialect: 
+});
+
+- instalar dotenv: npm i dotenv --save 
+
+----------------------------------------------
+
+// hay que escribir con sequelize 
+// hacer un modelo de tabla poster
+
+// introducir
+// nombre tabla
+// los nombres de los campos
+// esto es lo que hay en la base de datos
